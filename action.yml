@@ -40,6 +40,10 @@ runs:
       pre-commit run --show-diff-on-failure --color=always ${{ inputs.extra_args }}
     shell: bash
 
+  # - name: Testing the Error Workflow Command
+  #   run: echo "::error::Testing error"
+  #   shell: bash
+
   - run: |
       date > generated.txt
       git config user.name github-actions
