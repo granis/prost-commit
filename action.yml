@@ -12,19 +12,23 @@ inputs:
 runs:
   using: composite
   steps:
+
   - uses: actions/setup-python@v3
-    id: setup-python
+
+  - uses: actions/cache@v3
+    id: cache_pip
     with:
-      cache: 'pip'
+      path: ~/.local/lib
+      key: pre-commit|${{ steps.setup-python.outputs.python-version }}|${{ hashFiles('.pre-commit-config.yaml') }}
 
   - run: python -m pip install pre-commit
     shell: bash
-    if: steps.setup-python.outputs.cache-hit != true
+    if: steps.cache_pip.outputs.cache-hit != true
 
   - uses: actions/cache@v3
     with:
       path: ~/.cache/pre-commit
-      key: pre-commit-3|${{ env.pythonLocation }}|${{ hashFiles('.pre-commit-config.yaml') }}
+      key: pre-commit|${{ steps.setup-python.outputs.python-version }}|${{ hashFiles('.pre-commit-config.yaml') }}
 
   - run: pre-commit run --show-diff-on-failure --color=always ${{ inputs.extra_args }}
     shell: bash
