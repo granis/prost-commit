@@ -5,6 +5,9 @@ inputs:
     description: options to pass to pre-commit run
     required: false
     default: '--all-files'
+  token:
+    description: 'A Github token'
+    required: true
 runs:
   using: composite
   steps:
@@ -20,5 +23,5 @@ runs:
     shell: bash
   - run: touch apa && git add apa && git push
     env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ inputs.token }}
     shell: bash
