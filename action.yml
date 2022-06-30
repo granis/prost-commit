@@ -1,5 +1,6 @@
 name: pre-commit
 description: run pre-commit
+
 inputs:
   extra_args:
     description: options to pass to pre-commit run
@@ -9,12 +10,12 @@ inputs:
     description: 'Autofix files and commit changes.'
     required: false
     default: "false"
+
 runs:
   using: composite
   steps:
-
-  - uses: actions/setup-python@v3
-    id: setup-python
+  # - uses: actions/setup-python@v3
+  #   id: setup-python
 
   - uses: actions/cache@v3
     id: cache_pip
