@@ -18,5 +18,3 @@ jobs:
     - uses: actions/setup-python@v3
     - name: self test action
       uses: ./
-      # with:
-      #   token: ${{ secrets.GITHUB_TOKEN }}

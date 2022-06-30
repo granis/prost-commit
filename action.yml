@@ -5,9 +5,10 @@ inputs:
     description: options to pass to pre-commit run
     required: false
     default: '--all-files'
-  # token:
-  #   description: 'A Github token'
-  #   required: true
+  autofix:
+    description: 'Autofix files and commit changes.'
+    required: false
+    default: "false"
 runs:
   using: composite
   steps:
@@ -28,6 +29,5 @@ runs:
       git add .
       git commit -m "generated"
       git push
-    # env:
-    #   GITHUB_TOKEN: ${{ inputs.token }}
+    if: inputs.autofix == true
     shell: bash
