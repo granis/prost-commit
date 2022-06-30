@@ -28,7 +28,7 @@ runs:
       python -m pip install --upgrade pip
       python -m pip install pre-commit
     shell: bash
-    if: steps.cache_pip.outputs.cache-hit != true
+    if: steps.cache_pip.outputs.cache-hit != 'true'
 
   - uses: actions/cache@v3
     with:
