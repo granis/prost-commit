@@ -56,3 +56,9 @@ repos:
   hooks:
     - id: vulture
       require_serial: True
+
+- repo: https://github.com/python-jsonschema/check-jsonschema
+  rev: 0.16.2
+  hooks:
+    - id: check-github-workflows
+    - id: check-github-actions
