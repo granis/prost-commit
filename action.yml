@@ -14,8 +14,6 @@ inputs:
 runs:
   using: composite
   steps:
-  # - uses: actions/setup-python@v3
-  #   id: setup-python
 
   - uses: actions/cache@v3
     id: cache_pip
@@ -41,10 +39,6 @@ runs:
       pre-commit run --show-diff-on-failure --color=always ${{ inputs.extra_args }}
     shell: bash
 
-  # - name: Testing the Error Workflow Command
-  #   run: echo "::error::Testing error"
-  #   shell: bash
-
   - run: |
       date > generated.txt
       git config user.name github-actions
@@ -52,5 +46,5 @@ runs:
       git add .
       git commit -m "generated"
       git push
-    if: inputs.autofix == true
+    if: inputs.autofix == 'true'
     shell: bash
