@@ -5,9 +5,9 @@ inputs:
     description: options to pass to pre-commit run
     required: false
     default: '--all-files'
-  token:
-    description: 'A Github token'
-    required: true
+  # token:
+  #   description: 'A Github token'
+  #   required: true
 runs:
   using: composite
   steps:
@@ -28,6 +28,6 @@ runs:
       git add .
       git commit -m "generated"
       git push
-    env:
-      GITHUB_TOKEN: ${{ inputs.token }}
+    # env:
+    #   GITHUB_TOKEN: ${{ inputs.token }}
     shell: bash
