@@ -22,9 +22,10 @@ runs:
       path: ~/.venv
       key: pre-commit|${{ steps.setup-python.outputs.python-version }}|${{ hashFiles('.pre-commit-config.yaml') }}
 
-  - run: | 
+  - run: |
       python -m venv ~/.venv
       source ~/.venv/bin/activate
+      python -m pip install --upgrade pip
       python -m pip install pre-commit
     shell: bash
     if: steps.cache_pip.outputs.cache-hit != true
@@ -34,7 +35,7 @@ runs:
       path: ~/.cache/pre-commit
       key: pre-commit|${{ steps.setup-python.outputs.python-version }}|${{ hashFiles('.pre-commit-config.yaml') }}
 
-  - run: | 
+  - run: |
       source ~/.venv/bin/activate
       pre-commit run --show-diff-on-failure --color=always ${{ inputs.extra_args }}
     shell: bash
